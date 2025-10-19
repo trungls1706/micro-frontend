@@ -9,10 +9,10 @@ export default defineConfig({
     federation({
       name: "host-app",
       remotes: {
-        productsApp: process.env.PROD
+        productsApp: import.meta.env.PROD
           ? "https://micro-frontend-remote-product.vercel.app/assets/remoteEntry.js"
           : "http://localhost:5001/assets/remoteEntry.js",
-        cartApp: process.env.PROD
+        cartApp: import.meta.env.PROD
           ? "https://micro-frontend-remote-cart.vercel.app/assets/remoteEntry.js"
           : "http://localhost:5002/assets/remoteEntry.js",
       },
