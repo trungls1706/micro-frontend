@@ -56,7 +56,6 @@ export default function ProductsApp({ onAddToCart, products = mockProducts }: Pr
     if (onAddToCart) {
       onAddToCart(product);
     }
-    alert(`Added ${product.name} to cart!`);
   };
 
   return (

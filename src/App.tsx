@@ -9,7 +9,14 @@ const CartRemote = lazy(() => import("cartApp/CartApp"));
 
 function App() {
   const [activeTab, setActiveTab] = useState<"products" | "cart">("products");
-  const { getCartItemsCount } = useSharedStore();
+  const {
+    state,
+    removeFromCart,
+    updateQuantity,
+    clearCart,
+    getCartItemsCount,
+    addToCart,
+  } = useSharedStore();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-gray-100">
@@ -60,8 +67,17 @@ function App() {
             </div>
           }
         >
-          {activeTab === "products" && <ProductsRemote />}
-          {activeTab === "cart" && <CartRemote />}
+          {activeTab === "products" && (
+            <ProductsRemote onAddToCart={addToCart} />
+          )}
+          {activeTab === "cart" && (
+            <CartRemote
+              cart={state.cart}
+              onRemoveFromCart={removeFromCart}
+              onUpdateQuantity={updateQuantity}
+              onClearCart={clearCart}
+            />
+          )}
         </Suspense>
       </main>
     </div>
