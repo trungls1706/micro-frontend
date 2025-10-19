@@ -1,12 +1,14 @@
-import { useState, lazy, Suspense } from 'react';
-import { ShoppingCart, Package } from 'lucide-react';
-import { useSharedStore } from './hooks/useSharedStore';
+import { useState, lazy, Suspense } from "react";
+import { ShoppingCart, Package } from "lucide-react";
+import { useSharedStore } from "./hooks/useSharedStore";
 
-const ProductsRemote = lazy(() => import('./components/ProductsRemote'));
-const CartRemote = lazy(() => import('./components/CartRemote'));
+// @ts-ignore
+const ProductsRemote = lazy(() => import("productsApp/ProductsApp"));
+// @ts-ignore
+const CartRemote = lazy(() => import("cartApp/CartApp"));
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'products' | 'cart'>('products');
+  const [activeTab, setActiveTab] = useState<"products" | "cart">("products");
   const { getCartItemsCount } = useSharedStore();
 
   return (
@@ -19,22 +21,22 @@ function App() {
             </h1>
             <nav className="flex gap-4">
               <button
-                onClick={() => setActiveTab('products')}
+                onClick={() => setActiveTab("products")}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                  activeTab === 'products'
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  activeTab === "products"
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 <Package size={20} />
                 Products
               </button>
               <button
-                onClick={() => setActiveTab('cart')}
+                onClick={() => setActiveTab("cart")}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 relative ${
-                  activeTab === 'cart'
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  activeTab === "cart"
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 <ShoppingCart size={20} />
@@ -58,11 +60,10 @@ function App() {
             </div>
           }
         >
-          {activeTab === 'products' && <ProductsRemote />}
-          {activeTab === 'cart' && <CartRemote />}
+          {activeTab === "products" && <ProductsRemote />}
+          {activeTab === "cart" && <CartRemote />}
         </Suspense>
       </main>
-
     </div>
   );
 }
