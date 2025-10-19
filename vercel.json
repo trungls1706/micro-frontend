@@ -1,0 +1,19 @@
+{
+  "projects": [
+    {
+      "src": "src",
+      "buildCommand": "vite build",
+      "outputDirectory": "dist"
+    },
+    {
+      "src": "remote-apps/products-app",
+      "buildCommand": "vite build",
+      "outputDirectory": "dist"
+    },
+    {
+      "src": "remote-apps/cart-app",
+      "buildCommand": "vite build",
+      "outputDirectory": "dist"
+    }
+  ]
+}
